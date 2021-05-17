@@ -8,7 +8,8 @@ import soldier.core.Unit;
 import soldier.core.UnitGroup;
 import soldier.core.UnitObserver;
 
-public class PlayerImpl extends SpriteImpl implements Player {
+
+public class PlayerImpl extends SpriteImpl implements Player{
 	
 	private String name;
 	private UnitGroup army;
@@ -20,7 +21,6 @@ public class PlayerImpl extends SpriteImpl implements Player {
 		this.name = name;
 		this.armyFactory = armyFactory;
 		this.army = new UnitGroup(name +"Army");
-		
 	}
 	
 	@Override
@@ -40,7 +40,6 @@ public class PlayerImpl extends SpriteImpl implements Player {
 	@Override
 	public void addEquipment(Equipment equipment) {
 		this.army.addEquipment(equipment);
-		
 	}
 	@Override
 	public Case getCase() {

@@ -9,6 +9,7 @@ public class Settings {
     
     //Sprite
     public static final double SPRITE_X  = 60;
+    public static final double SPRITE_X2  = 50;
     public static final double SPRITE_Y  = 25;
     public static final double SPRITE_DX = 105;
     public static final double SPRITE_DY = 68;

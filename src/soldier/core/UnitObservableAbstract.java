@@ -25,19 +25,13 @@ public abstract class UnitObservableAbstract implements Unit {
 	public void removeObserver(UnitObserver obs) {
 		observersOrdered.remove(obs);
 		observersSet.remove(obs);
-	}
-	/*
+	}	
 	@Override
 	public void notifyObservers() {
 		Object[] copy = observersOrdered.toArray();
 		for (Object u : copy)
 			((UnitObserver) u).update(this);
 	}
-	*/
-	@Override
-	public void notifyObservers() {
-		for (UnitObserver obs : observersSet) {
-			obs.update(this);
-		}
-	}
+	
+	
 }

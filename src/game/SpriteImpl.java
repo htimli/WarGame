@@ -8,44 +8,44 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 public class SpriteImpl implements Sprite {
-	
-	
+
+
 	private ImageView imageView;
 
-    private Pane layer;
+	private Pane layer;
 
-    protected double x;
-    protected double y;
+	protected double x;
+	protected double y;
 
-    protected double dx;
-    protected double dy;
-    
-    private Case _case;
-    
-    private static Board board = new Board();
-    
-    private static HashMap<Integer,Point2D.Double> cases  = new HashMap<>(); 
-    
-    
-    
+	protected double dx;
+	protected double dy;
+
+	private Case _case;
+
+	private static Board board = new Board();
+
+	private static HashMap<Integer,Point2D.Double> cases  = new HashMap<>(); 
+
+
+
 	public SpriteImpl(Image image, Pane layer, double x, double y, double dx, double dy) {
 		super();
-		
+
 		this.imageView = new ImageView(image);
 		this.layer = layer;
 		this.x = x;
 		this.y = y;
 		this.dx = dx;
 		this.dy = dy;
-		
-		
+
+
 		_case = board.getCase(0);
-		
+
 		imageView.relocate(x, y);
 		this.addToLayer();
 	}
-	
-	
+
+
 	public Case getCase() {
 		return _case;
 	}
@@ -65,36 +65,36 @@ public class SpriteImpl implements Sprite {
 
 	@Override
 	public void addToLayer() {
-        this.layer.getChildren().add(this.imageView);
-    }
+		this.layer.getChildren().add(this.imageView);
+	}
 	@Override
 	public void tick() {
 		x+=dx;
 		y+=dy;
 		imageView.relocate(x, y);
-		
+
 	}
 	@Override
 	public void forword() {
 		x+=dx;
 	}
-	
+
 	@Override
 	public void back() {
 		x-=dx;
 	}
-	
+
 	@Override
 	public void up() {
 		y-=dy;
 	}
-	
+
 	@Override
 	public void down() {
 		y+=dy;
 	}
-	
-	
+
+
 	@Override
 	public void setX(double x) {
 		this.x = x;
@@ -127,12 +127,12 @@ public class SpriteImpl implements Sprite {
 		int nbCase = this.getNbCase();
 		return (nbCase > Settings.TURN_BOARD_3 && nbCase <= Settings.TURN_BOARD_4) ;
 	}
-	
+
 	@Override
 	public void moove () {
 		if(this.getNbCase()< Settings.BOARD_NB_CASES-1) {
 			_case = board.getCase(this.getNbCase()+1);
-				
+
 			if(isMoovingUp()) {
 				imageView.setRotate(3*Settings.ROTATION);	
 				up();
@@ -152,7 +152,7 @@ public class SpriteImpl implements Sprite {
 			imageView.relocate(x, y);
 		}
 	}
-					
+
 	public void detectPositions() {
 		this.imageView.setVisible(false);
 		while (this.getNbCase()< 34){
@@ -170,9 +170,9 @@ public class SpriteImpl implements Sprite {
 		imageView.relocate(x,y);
 		this._case = SpriteImpl.board.getCase(nbcase);
 	}
-    public int getNbCase() {
-    	return this._case.getNbCase();
-    }
+	public int getNbCase() {
+		return this._case.getNbCase();
+	}
 
 
 	public HashMap<Integer, Point2D.Double> getCases() {
@@ -184,8 +184,8 @@ public class SpriteImpl implements Sprite {
 	public ImageView getImageView() {
 		return this.imageView;
 	}
-    
-	
-    
+
+
+
 
 }

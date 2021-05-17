@@ -6,6 +6,7 @@ import game.*;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.stage.Stage;
+import soldier.ages.AgeFutureFactory;
 import soldier.ages.AgeMiddleFactory;
 import soldier.core.UnitObserver;
 import soldier.util.DeadUnitCounterObserver;
@@ -20,7 +21,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 
 
-public class Main extends Application {
+public class UIExample extends Application {
 
 	Player player1 ;
 	Player player2;
@@ -45,8 +46,7 @@ public class Main extends Application {
 			 
 			 loadImages(); 
 			 
-			 player1 = new PlayerImpl("Toto",new AgeMiddleFactory(),playerArmyImage, root,Settings.SPRITE_X);
-			 player2 = new PlayerImpl("Titi",new AgeMiddleFactory(),image3, root,50);
+			 initPlayers();
 			 
 			 detectCasesPosition();		 
 		
@@ -79,6 +79,13 @@ public class Main extends Application {
 		}
 	}
 
+	private void initPlayers() {
+		player1 = new PlayerImpl("Toto",new AgeFutureFactory(),playerArmyImage, root,Settings.SPRITE_X);
+		player2 = new PlayerImpl("Titi",new AgeMiddleFactory(),image3, root,Settings.SPRITE_X2);
+		player1.addUnit(player1.getArmyFactory().infantryUnit(player1.getName()));
+		player2.addUnit(player2.getArmyFactory().infantryUnit(player2.getName()));
+	}
+
 	private void placeComponets() {
 		HBox bottomHBox = new HBox(); 
 		VBox rollingButtonDiceVBox = new VBox();
@@ -99,14 +106,16 @@ public class Main extends Application {
 	
 	private void loadImages() {
 		playerArmyImage = new Image(this.getClass().getResourceAsStream("/resources/images/army.png"),50,50,false,true);
-		diceRollingImage = new Image(this.getClass().getResourceAsStream("/resources/images/dice_rolling.gif"),100,100,false,true);
+		diceRollingImage = new Image(this.getClass().getResourceAsStream("/resources/images/diceRolling.gif"),100,100,false,true);
 		image3 = new Image(this.getClass().getResourceAsStream("/resources/images/ennemy.jpg"),50,50,false,true);
 	}
+	
 	private void detectCasesPosition() {
 		SpriteImpl detectorPosSprite = new SpriteImpl(playerArmyImage, root,Settings.SPRITE_X, Settings.SPRITE_Y, Settings.SPRITE_DX, Settings.SPRITE_DY);
 		detectorPosSprite.detectPositions();
 	}
-	public void addObservers() {
+	
+	private void addObservers() {
 		 UnitObserver obs = new DeadUnitCounterObserver(); 	  
 			player1.addObserver(obs);
 			player2.addObserver(obs);

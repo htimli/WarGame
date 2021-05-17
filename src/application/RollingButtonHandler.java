@@ -65,6 +65,7 @@ public class RollingButtonHandler implements EventHandler<ActionEvent>{
 			float st2 = team2.strike();
 			label.setText(team2.getName() + " attack with force : " + st2);
 			team1.parry(st2);
+			
 		}
 		label.setText("The end ...  team " + (team1.alive() ? team1.getName() : team2.getName()) + " won." );
 		
