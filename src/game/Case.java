@@ -38,7 +38,22 @@ public class Case {
 	public void addEquipment(Equipment equipment) {
 		this.equipments.add(equipment);
 	}
-
+	public boolean conatainsEquipment() {
+		return !(equipments.isEmpty());
+	}
+	public boolean containsUnit() {
+		return this.unit!=null;
+	}
+	public Unit takeOffUnit() {
+		Unit res = this.unit;
+		this.unit=null;
+		return res;
+	}
+	public Equipment takeOffEquipement() {
+		Equipment res = equipments.get(0);
+		equipments.remove(0);
+		return res ;
+	}
 	@Override
 	public String toString() {
 		return "Case [number=" + number + ", equipments=" + equipments + ", unit=" + unit + "]";

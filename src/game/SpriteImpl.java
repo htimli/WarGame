@@ -24,7 +24,7 @@ public class SpriteImpl implements Sprite {
     
     private static Board board = new Board();
     
-    private static HashMap<Integer,Point2D.Double> cases  = new HashMap<>(); // to remove from here 
+    private static HashMap<Integer,Point2D.Double> cases  = new HashMap<>(); 
     
     
     
@@ -45,6 +45,11 @@ public class SpriteImpl implements Sprite {
 		this.addToLayer();
 	}
 	
+	
+	public Case getCase() {
+		return _case;
+	}
+
 
 	@Override
 	public double getX() {
@@ -105,43 +110,42 @@ public class SpriteImpl implements Sprite {
 	@Override
 	public boolean isMoovingForword() {
 		int nbCase = this.getNbCase();
-		return (nbCase <8 || (nbCase >24 && nbCase <30)); 
+		return (nbCase <=Settings.TURN_BOARD_1 || (nbCase > Settings.TURN_BOARD_4 && nbCase <= Settings.TURN_BOARD_5)); 
 	}
 	@Override
 	public boolean isMoovingDown() {
 		int nbCase = this.getNbCase();
-		return ( (nbCase >7 && nbCase < 14) || (nbCase >29 && nbCase < 32 ));
+		return ( (nbCase > Settings.TURN_BOARD_1 && nbCase <= Settings.TURN_BOARD_2) || (nbCase > Settings.TURN_BOARD_5 && nbCase <= Settings.TURN_BOARD_6 ));
 	}
 	@Override
 	public boolean isMoovingBack(){
 		int nbCase = this.getNbCase();
-		return ((nbCase>13 && nbCase <21) || (nbCase>31 && nbCase<35));
+		return ((nbCase > Settings.TURN_BOARD_2 && nbCase <= Settings.TURN_BOARD_3) || (nbCase > Settings.TURN_BOARD_6 && nbCase < Settings.BOARD_NB_CASES));
 	}
 	@Override
 	public boolean isMoovingUp() {
 		int nbCase = this.getNbCase();
-		return (nbCase>20 && nbCase<25) ;
+		return (nbCase > Settings.TURN_BOARD_3 && nbCase <= Settings.TURN_BOARD_4) ;
 	}
 	
 	@Override
 	public void moove () {
-		if(this.getNbCase()< 34) {
+		if(this.getNbCase()< Settings.BOARD_NB_CASES-1) {
 			_case = board.getCase(this.getNbCase()+1);
-			
-
+				
 			if(isMoovingUp()) {
-				imageView.setRotate(270);	
+				imageView.setRotate(3*Settings.ROTATION);	
 				up();
 			}
 			else if(isMoovingBack()){
-				imageView.setRotate(180);	
+				imageView.setRotate(2*Settings.ROTATION);	
 				back();
 			}
 			else if( isMoovingDown()){
-				imageView.setRotate(90);	
+				imageView.setRotate(Settings.ROTATION);	
 				down();
 			}
-			else if(isMoovingForword() ){
+			else {
 				imageView.setRotate(0);	
 				forword();
 			}
@@ -174,6 +178,7 @@ public class SpriteImpl implements Sprite {
 		return cases;
 	}
     
+	
     
 
 }

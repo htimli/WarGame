@@ -11,7 +11,7 @@ public class Board {
 	
 	public Board() {
 			cases = new HashMap<>(); 
-			for(int i=0 ; i<=34 ;i++) {
+			for(int i=0 ; i<Settings.BOARD_NB_CASES ;i++) {
 				cases.put(i, new Case());
 			}
 	}

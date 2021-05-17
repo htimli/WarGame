@@ -20,7 +20,8 @@ import javafx.scene.text.Font;
 
 public class Main extends Application {
 
-	Player player ;
+	Player player1 ;
+	Player player2;
 	
 	Label commentsLabel;
 	
@@ -41,7 +42,8 @@ public class Main extends Application {
 			
 			 loadImages(); 
 			 
-			 player = new PlayerImpl("Toto",new AgeMiddleFactory(),playerArmyImage, root, 60, 25, 105, 68);
+			 player1 = new PlayerImpl("Toto",new AgeMiddleFactory(),playerArmyImage, root);
+			 player2 = new PlayerImpl("Toto",new AgeMiddleFactory(),image3, root);
 			 
 			 detectCasesPosition();		 
 			 addWeapons();
@@ -54,12 +56,15 @@ public class Main extends Application {
 			commentsLabel.setFont(new Font("Arial", 30));
 			
 		    placeComponets();
+		    
+		    
+		    
 
-			rollingButton.setOnAction(new RollingButtonHandler(commentsLabel,(Sprite)player));
+			rollingButton.setOnAction(new RollingButtonHandler(commentsLabel,(Sprite)player1,(Sprite)player2));
 							
 			root.setId("plateau");
 						
-			Scene scene = new Scene(root,900,650);
+			Scene scene = new Scene(root,Settings.SCENE_WIDTH ,Settings.SCENE_HEIGHT);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.setResizable(false);
