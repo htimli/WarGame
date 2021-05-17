@@ -26,12 +26,18 @@ public abstract class UnitObservableAbstract implements Unit {
 		observersOrdered.remove(obs);
 		observersSet.remove(obs);
 	}
-
-	@SuppressWarnings("unchecked")
+	/*
 	@Override
 	public void notifyObservers() {
 		Object[] copy = observersOrdered.toArray();
 		for (Object u : copy)
 			((UnitObserver) u).update(this);
+	}
+	*/
+	@Override
+	public void notifyObservers() {
+		for (UnitObserver obs : observersSet) {
+			obs.update(this);
+		}
 	}
 }

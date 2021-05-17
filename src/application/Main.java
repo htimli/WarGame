@@ -7,6 +7,8 @@ import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.stage.Stage;
 import soldier.ages.AgeMiddleFactory;
+import soldier.core.UnitObserver;
+import soldier.util.DeadUnitCounterObserver;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -39,17 +41,17 @@ public class Main extends Application {
 		try {
 			 root = new BorderPane();    
 			
-			
+			 
+			 
 			 loadImages(); 
 			 
-			 player1 = new PlayerImpl("Toto",new AgeMiddleFactory(),playerArmyImage, root);
-			 player2 = new PlayerImpl("Toto",new AgeMiddleFactory(),image3, root);
+			 player1 = new PlayerImpl("Toto",new AgeMiddleFactory(),playerArmyImage, root,Settings.SPRITE_X);
+			 player2 = new PlayerImpl("Titi",new AgeMiddleFactory(),image3, root,50);
 			 
 			 detectCasesPosition();		 
-			 addWeapons();
 		
 			rollingButton = new Button();
-		    rollingButton.setText("roll");		
+		    rollingButton.setText("ROLL");		
 			
 		    
 		    commentsLabel = new Label();
@@ -57,18 +59,19 @@ public class Main extends Application {
 			
 		    placeComponets();
 		    
+		    addObservers();    
 		    
-		    
-
-			rollingButton.setOnAction(new RollingButtonHandler(commentsLabel,(Sprite)player1,(Sprite)player2));
+			rollingButton.setOnAction(new RollingButtonHandler(commentsLabel,player1,player2));
 							
 			root.setId("plateau");
-						
+			
+					
 			Scene scene = new Scene(root,Settings.SCENE_WIDTH ,Settings.SCENE_HEIGHT);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			primaryStage.getIcons().add(new Image("/resources/images/logo.png"));
 			primaryStage.setScene(scene);
 			primaryStage.setResizable(false);
-			primaryStage.setTitle("MyGame");
+			primaryStage.setTitle("WarGame");
 			primaryStage.show();
 
 		} catch(Exception e) {
@@ -97,19 +100,17 @@ public class Main extends Application {
 	private void loadImages() {
 		playerArmyImage = new Image(this.getClass().getResourceAsStream("/resources/images/army.png"),50,50,false,true);
 		diceRollingImage = new Image(this.getClass().getResourceAsStream("/resources/images/dice_rolling.gif"),100,100,false,true);
-		image3 = new Image(this.getClass().getResourceAsStream("/resources/images/Weapon.png"),60,25,false,true);
+		image3 = new Image(this.getClass().getResourceAsStream("/resources/images/ennemy.jpg"),50,50,false,true);
 	}
 	private void detectCasesPosition() {
-		SpriteImpl detectorPosSprite = new SpriteImpl(playerArmyImage, root, 60, 45, 105, 68);
+		SpriteImpl detectorPosSprite = new SpriteImpl(playerArmyImage, root,Settings.SPRITE_X, Settings.SPRITE_Y, Settings.SPRITE_DX, Settings.SPRITE_DY);
 		detectorPosSprite.detectPositions();
 	}
-	private void addWeapons() {
-		//TODO
-		
-		Sprite sprite3 = new SpriteImpl(image3, root, 60, 45, 105, 68);
-		sprite3.put(7);	
+	public void addObservers() {
+		 UnitObserver obs = new DeadUnitCounterObserver(); 	  
+			player1.addObserver(obs);
+			player2.addObserver(obs);
 	}
-
 	public static void main(String[] args) {
 		launch(args);
 	}

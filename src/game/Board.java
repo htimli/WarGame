@@ -16,7 +16,7 @@ public class Board {
 			}
 	}
 	
-	public Case getCase(int nbCase) {
+	public  Case getCase(int nbCase) {
 		return cases.get(nbCase);
 	}
 	

@@ -5,7 +5,7 @@ import java.util.List;
 import soldier.core.Equipment;
 import soldier.core.Unit;
 
-public class Case {
+public class Case  {
 	
 	private static int nextNumber = 0 ;
 	private int number;

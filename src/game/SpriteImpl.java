@@ -163,11 +163,12 @@ public class SpriteImpl implements Sprite {
 		cases.put(this.getNbCase(),new Point2D.Double(this.getX(), this.getY())); //for the last case
 	}
 	@Override
-	public void put(int nbcase) {
+	public void relocate(int nbcase) {
 		Point2D.Double p = cases.get(nbcase);
 		this.setX(p.x);
 		this.setY(p.y);
 		imageView.relocate(x,y);
+		this._case = SpriteImpl.board.getCase(nbcase);
 	}
     public int getNbCase() {
     	return this._case.getNbCase();
@@ -176,6 +177,12 @@ public class SpriteImpl implements Sprite {
 
 	public HashMap<Integer, Point2D.Double> getCases() {
 		return cases;
+	}
+
+
+	@Override
+	public ImageView getImageView() {
+		return this.imageView;
 	}
     
 	

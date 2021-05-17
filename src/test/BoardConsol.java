@@ -29,7 +29,7 @@ public class BoardConsol {
 		
 		
 		AgeAbstractFactory factory = new AgeMiddleFactory();
-		PlayerImpl p = new PlayerImpl("Toto", factory , playerArmyImage,new BorderPane() );
+		PlayerImpl p = new PlayerImpl("Toto", factory , playerArmyImage,new BorderPane(),2 );
 		
 		
 		Equipment equipment_1 = factory.attackWeapon();

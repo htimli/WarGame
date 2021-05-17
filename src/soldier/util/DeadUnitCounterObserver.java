@@ -12,10 +12,11 @@ public class DeadUnitCounterObserver implements UnitObserver {
 
 	@Override
 	public void update(Unit unit) {
+		
 		if (!unit.alive()) {
 			++deadUnit;
-			// System.out.println(unit.getName() + " is the " + deadUnit +
-			// "th death, please stop war !!!");
+			 System.out.println(unit.getName() + " is the " + deadUnit +
+			 "th death, please stop war !!!");
 			unit.removeObserver(this);
 		}
 	}

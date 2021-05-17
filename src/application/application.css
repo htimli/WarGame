@@ -1,6 +1,6 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
 #plateau{
-    -fx-background-image: url("/resources/images/board_v2.jpg");
+    -fx-background-image: url("/resources/images/board.jpg");
     -fx-background-repeat: stretch;   
     -fx-background-size: 900 506;
     -fx-background-position: top;

@@ -1,11 +1,15 @@
 package game;
 
+import javafx.scene.image.ImageView;
+
 public interface Sprite {
 
 	double getX();
 
 	double getY();
-
+	
+	ImageView getImageView();
+	
 	void addToLayer();
 
 	void tick();
@@ -32,6 +36,6 @@ public interface Sprite {
 
 	void moove();
 
-	void put(int nbcase);
+	void relocate(int nbcase);
 
 }

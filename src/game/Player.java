@@ -1,17 +1,23 @@
 package game;
 
+
+
 import soldier.core.AgeAbstractFactory;
 import soldier.core.Equipment;
 import soldier.core.Unit;
 import soldier.core.UnitGroup;
+import soldier.core.UnitObserver;
 
 public interface Player {
 
 	String getName();
 
-	UnitGroup getArmy();
+	Unit getArmy();
 
 	AgeAbstractFactory getArmyFactory();
+	
+	
+	void play();
 	
 	void addEquipment(Equipment equipment);
 	
@@ -26,5 +32,7 @@ public interface Player {
 	void loseEquipment();
 	
 	void loseUnit();
+	
+	void addObserver(UnitObserver obs);
 
 }
