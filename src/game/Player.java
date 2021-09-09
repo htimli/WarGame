@@ -5,7 +5,6 @@ package game;
 import soldier.core.AgeAbstractFactory;
 import soldier.core.Equipment;
 import soldier.core.Unit;
-import soldier.core.UnitGroup;
 import soldier.core.UnitObserver;
 
 public interface Player {

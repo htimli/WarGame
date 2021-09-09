@@ -33,7 +33,7 @@ public class Settings {
     public static final int PICKUP_EQUPIP_NBCASE  = 28;
     public static final int APPEND_UNIT_NBCASE  = 10;
 
-    //rotation 
+   
     public static final int ROTATION = 90;
     
     
